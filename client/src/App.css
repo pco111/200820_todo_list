@@ -19,3 +19,23 @@
     opacity: 0.01;
     transition: opacity 1000ms ease-in;
 }
+
+.list_card_button {
+    display: flex !important;
+    flex-direction: row !important;
+    margin-bottom: 10px !important;
+}
+
+.delete_button {
+    flex: 0;
+}
+
+.item_card {
+    flex:1;
+    margin-left: 10px;
+    width: 70% !important;
+}
+
+.bg-custom-2 {
+    background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
+}

@@ -1,12 +1,12 @@
 const express=require('express')
 const mongoose=require('mongoose')
-const bodyParser=require('body-parser')
 const app=express()
-const items=require('./routes/api/items')
 const path=require('path')
-
-app.use(bodyParser.json())
-app.use('/api/items', items)
+const config=require('config')
+app.use(express.json())
+app.use('/api/items', require('./routes/api/items'))
+app.use('/api/users', require('./routes/api/users'))
+app.use('/api/auth', require('./routes/api/auth'))
 
 if(process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'))
@@ -15,8 +15,8 @@ if(process.env.NODE_ENV === 'production') {
     })
 }
 
-//mongo db
-const db=require('./config/keys').mongoURI 
+const db=config.get('mongoURI')
+mongoose.set('useCreateIndex', true)
 mongoose
     .connect(db,{useUnifiedTopology: true, useNewUrlParser: true})
     .then(() => console.log('mongoDB connected...'))
